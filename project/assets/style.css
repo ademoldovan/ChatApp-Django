@@ -134,7 +134,7 @@ a.highlight{
     margin: 10px 0;
     overflow-y: auto;
     width: 950px;
-    height: 340px;
+    height: 400px;
 }
 
 /* Chat containers */
@@ -171,26 +171,15 @@ a.highlight{
   display: table;
 }
 
-/* Style images */
-.container img {
-  float: left;
-  max-width: 60px;
-  width: 100%;
-  margin-right: 20px;
-  border-radius: 50%;
-}
-
-/* Style the right image */
-.container img.right {
-  float: right;
-  margin-left: 20px;
-  margin-right:0;
-}
-
 /* Style time text */
 .time-right {
   float: right;
   color: #aaa;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
 }
 
 /* Style time text */

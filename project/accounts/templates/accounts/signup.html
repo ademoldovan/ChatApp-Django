@@ -4,7 +4,8 @@
     <h1>Sign in</h1>
     <form class="site-form" action="{% url 'accounts:signup' %}" method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ user_form }}
+        {{ actor_form }}
         <input type="submit" value="Signup">
     </form>
 {% endblock %}

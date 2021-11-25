@@ -12,8 +12,8 @@
     <header class="wrapper">
         <div class = "siteName">
             {% load static %}
-            <img class="logo" src="{% static 'logo1.png' %}" alt="logo">
-            <h2 class = "title">ChatApp</h2>
+            <a href="{% url 'homepage_view' %}"><img class="logo" src="{% static 'logo1.png' %}" alt="logo"></a>
+            <a href="/chatApp"><h2 class = "title">ChatApp</h2></a>
         </div>
         <nav>
             <ul>

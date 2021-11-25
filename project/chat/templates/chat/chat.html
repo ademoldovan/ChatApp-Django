@@ -1,18 +1,31 @@
 {% extends 'base_layout.html' %}
 
 {% block content %}
-     <div class="chat">
-          {% for message in messages %}
+
+     <div class="chat" id="chat-messages">
+         {% for element in elements %}
                <div class="container">
-                    <p class="message">{{message.message}}</p>
-                    <span class="time-left">{{message.user}}</span>
-                    <span class="time-right">{{message.time}}</span>
+                   {% if element.message %}
+                        <p class="message">{{element.message}}</p>
+                   {% else %}
+                        <img src="{{ element.image.url }}" alt="imagine indisponibila" class="responsive"/>
+                   {% endif %}
+                   <span class="time-left">{{element.user}}</span>
+                   <span class="time-right">{{element.time}}</span>
                </div>
           {% endfor %}
+         <script>
+             function scrollToBottom() {
+                let objDiv = document.getElementById("chat-messages");
+                objDiv.scrollTop = objDiv.scrollHeight;
+            }
+            scrollToBottom();
+         </script>
      </div>
-     <form class="message-form" method="post">
+     <form class="message-form" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{form}}
+          {{image_form.as_p}}
           <input type="submit" value="Send">
      </form>
 {% endblock %}
