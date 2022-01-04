@@ -2,7 +2,7 @@
 
 {% block content %}
 
-     <div class="chat" id="chat-messages">
+    <div class="chat" id="chat-messages">
          {% for element in elements %}
                <div class="container">
                    {% if element.message %}
@@ -14,18 +14,39 @@
                    <span class="time-right">{{element.time}}</span>
                </div>
           {% endfor %}
-         <script>
-             function scrollToBottom() {
-                let objDiv = document.getElementById("chat-messages");
-                objDiv.scrollTop = objDiv.scrollHeight;
-            }
-            scrollToBottom();
-         </script>
-     </div>
-     <form class="message-form" method="post" enctype="multipart/form-data">
+    </div>
+    <form class="message-form" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{form}}
           {{image_form.as_p}}
           <input type="submit" value="Send">
-     </form>
+    </form>
+    <script>
+       function scrollToBottom() {
+          let objDiv = document.getElementById("chat-messages");
+          objDiv.scrollTop = objDiv.scrollHeight;
+       }
+       scrollToBottom();
+
+       function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("show");
+       }
+
+       function filterFunction() {
+          var input, filter, ul, li, a, i;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          div = document.getElementById("myDropdown");
+          a = div.getElementsByTagName("a");
+          for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              a[i].style.display = "";
+            } else {
+              a[i].style.display = "none";
+            }
+          }
+       }
+
+    </script>
 {% endblock %}
