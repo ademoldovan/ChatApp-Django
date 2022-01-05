@@ -1,8 +1,4 @@
-from django.core.mail import send_mail
-from django.forms import forms
 from django.shortcuts import render, redirect
-from accounts.models import Actor
-from project import settings
 from . import forms
 from .models import Message, Image
 from django.contrib.auth.decorators import login_required
@@ -20,10 +16,10 @@ def chat_view(request):
     while i < n and j < m:
         if messages[i].time < images[j].time:
             elements.append(messages[i])
-            i = i+1
+            i = i + 1
         else:
             elements.append(images[j])
-            j = j+1
+            j = j + 1
     if i < n:
         while i < n:
             elements.append(messages[i])
@@ -41,11 +37,6 @@ def chat_view(request):
             if instance.message:
                 instance.user = request.user
                 instance.save()
-                inactive_users = Actor.objects.filter(isLoggedIn=False)
-                emails = []
-                for x in inactive_users:
-                    emails.append(x.email)
-                send_mail('ChatApp', 'New message!', settings.EMAIL_HOST_USER, emails, fail_silently=False)
         if image_form.is_valid():
             image_instance = image_form.save(commit=False)
             if image_instance.image:
